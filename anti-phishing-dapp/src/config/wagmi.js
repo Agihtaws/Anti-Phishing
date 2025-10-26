@@ -5,14 +5,12 @@ import {
 import { http } from 'wagmi';
 import { BASE_SEPOLIA_RPC_URL } from './contract-config'; // Import RPC URL
 
-// Define your project ID for WalletConnect
-// You can get one at cloud.walletconnect.com
-const projectId = '9e40bdaa4ad54dda337d19b734967075'; // Replace with your actual Project ID
+const projectId = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID; // NEW: Read from .env
 
 // Configure wagmi for Base Sepolia
 const wagmiConfig = getDefaultConfig({
   appName: 'Anti-Phishing System',
-  projectId,
+  projectId, // This will now use the value from the .env file
   chains: [
     baseSepolia,
   ],
