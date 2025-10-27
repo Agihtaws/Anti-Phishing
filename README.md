@@ -78,9 +78,10 @@ The Anti-Phishing Shield dApp is a comprehensive decentralized application enabl
 
 ---
 
-## 🎬 Demo Video
+## 🎥 Demo Video
 
-[Insert Demo Video Link Here]
+[![Watch the Demo](https://img.youtube.com/vi/yw_RgB-AWwM/maxresdefault.jpg)](https://www.youtube.com/watch?v=yw_RgB-AWwM)
+
 
 ## Live Demo
 *   Frontend - https://anti-phishing-frontend.onrender.com
