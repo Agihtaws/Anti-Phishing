@@ -82,6 +82,10 @@ The Anti-Phishing Shield dApp is a comprehensive decentralized application enabl
 
 [Insert Demo Video Link Here]
 
+## Live Demo
+*   Frontend - https://anti-phishing-frontend.onrender.com
+*   Backend - https://anti-phishing-backend.onrender.com
+
 ---
 
 ## 🚀 Getting Started (Local Development)
@@ -96,19 +100,23 @@ The Anti-Phishing Shield dApp is a comprehensive decentralized application enabl
 
 ### 1. Clone the Repository
 ```bash
-git clone YOUR_REPO_URL
-cd anti-phishing-dapp
+git clone https://github.com/Agihtaws/Anti-Phishing.git
+cd Anti-Phishing
 ````
 
 ### 2. Smart Contract Setup & Deployment
 
 ```bash
-cd anti-phishing-system
 npm install
 npx hardhat compile
 ```
 
 * Configure `.env` with private keys and RPC URLs.
+  ```bash
+  PRIVATE_KEY=
+  BASE_SEPOLIA_RPC_URL="https://sepolia.base.org"
+  BACKEND_MINTER_PRIVATE_KEY=
+  ```
 * Modify `deploy.js` for a short voting period (e.g., 2 min for hackathon testing).
 * Deploy contracts:
 
@@ -119,11 +127,24 @@ npx hardhat run scripts/deploy.js --network baseSepolia
 ### 3. Backend Setup
 
 ```bash
-cd ../anti-phishing-backend
+cd anti-phishing-backend
 npm install
 ```
 
 * Configure `.env` with contract addresses, Pinata API keys, and faucet settings.
+  ```bash
+  MONGODB_URI="mongodb://localhost:27017/back"
+  BASE_SEPOLIA_RPC_URL="https://base-sepolia.g.alchemy.com/v2/Alchemy_Key"
+  BLACKLIST_REGISTRY_ADDRESS="0xc4786A371c38D54aD548d556bb6a404A5Fdef67C"
+  PROPOSAL_VOTING_ADDRESS="0x84c9DD4A0ed723d39da90d27b344Fd2B29347293"
+  GOVERNANCE_TOKEN_ADDRESS="0xe103d6dfCF96F7b9ae82d9D5fa14a56CA1B4Bd0f"
+  PINATA_API_KEY=
+  PINATA_SECRET_API_KEY=
+  PINATA_JWT=
+  BACKEND_MINTER_PRIVATE_KEY=
+  FAUCET_AMOUNT_APGT="100"
+  FAUCET_COOLDOWN_HOURS="24"
+  ```
 * Run backend:
 
 ```bash
@@ -138,6 +159,17 @@ npm install
 ```
 
 * Configure `.env` with contract addresses, WalletConnect Project ID, and backend API URL.
+  ```bash
+  VITE_BLACKLIST_REGISTRY_ADDRESS="0xc4786A371c38D54aD548d556bb6a404A5Fdef67C"
+  VITE_PROPOSAL_VOTING_ADDRESS="0x84c9DD4A0ed723d39da90d27b344Fd2B29347293"
+  VITE_GOVERNANCE_TOKEN_ADDRESS="0xe103d6dfCF96F7b9ae82d9D5fa14a56CA1B4Bd0f"
+  VITE_BACKEND_API_URL="http://localhost:5000/api"
+  VITE_BASE_SEPOLIA_CHAIN_ID="84532"
+  VITE_BASE_SEPOLIA_RPC_URL="https://base-sepolia.g.alchemy.com/v2/Alchemy_Key"
+  VITE_FAUCET_AMOUNT_APGT=100
+  VITE_FAUCET_COOLDOWN_HOURS=24
+  VITE_WALLETCONNECT_PROJECT_ID=
+  ```
 * Run frontend:
 
 ```bash
