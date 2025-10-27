@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); // Import cors
+const cors = require('cors');
 const { ethers } = require('ethers');
 const rateLimit = require('express-rate-limit');
 const startBlockchainIndexer = require('./services/blockchainIndexer');
@@ -14,6 +14,11 @@ const faucetRoutes = require('./routes/faucet');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// --- HARDCODED FRONTEND URL FOR TESTING CORS ---
+// IMPORTANT: REMEMBER TO REVERT THIS TO USE process.env.FRONTEND_DAPP_URL FOR PRODUCTION!
+const HARDCODED_FRONTEND_DAPP_URL = "https://anti-phishing-frontend.onrender.com";
+
 
 // --- Environment Variable Validation ---
 const requiredEnv = [
@@ -28,7 +33,7 @@ const requiredEnv = [
   'GOVERNANCE_TOKEN_ADDRESS',
   'FAUCET_AMOUNT_APGT',
   'FAUCET_COOLDOWN_HOURS',
-  'FRONTEND_DAPP_URL' // NEW: Add frontend URL to required env vars
+  // 'FRONTEND_DAPP_URL' // Commented out as it's now hardcoded for testing
 ];
 
 requiredEnv.forEach(envVar => {
@@ -49,14 +54,14 @@ const apiLimiter = rateLimit({
 app.use(apiLimiter);
 
 // --- CORS Configuration ---
-// Use a more specific CORS configuration to allow requests ONLY from your frontend dApp URL
+// Using the hardcoded URL for the origin
 const corsOptions = {
-  origin: process.env.FRONTEND_DAPP_URL, // Allow requests from your deployed frontend dApp
+  origin: HARDCODED_FRONTEND_DAPP_URL, // Using the hardcoded URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // Allow cookies to be sent (if your API uses them)
-  optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 200
+  credentials: true,
+  optionsSuccessStatus: 204
 };
-app.use(cors(corsOptions)); // Apply CORS with specific options
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
